@@ -1,6 +1,9 @@
 const PostCategory = (sequelize, DataTypes) => {
   const PostCategory = sequelize.define("PostCategory", {
-  });
+  },
+    {
+      timestapms: 'false',
+    });
   PostCategory.associate = (models) => {
     PostCategory.belongsToMany(models.BlogPost, {
       as: 'post',
