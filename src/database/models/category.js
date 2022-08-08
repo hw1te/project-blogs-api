@@ -12,7 +12,7 @@ const Category = (sequelize, DataTypes) => {
       timestamps: 'false',
     });
   Category.associate = (models) => {
-    Category.belongsToMany(models.Users, {
+    Category.belongsToMany(models.User, {
       foreignKey: 'userId', as: 'user'
     });
   };
