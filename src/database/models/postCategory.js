@@ -24,7 +24,7 @@ const PostCategory = (sequelize, DataTypes) => {
     },
   },
     {
-      timestapms: 'false',
+      timestapms: false,
     });
 
   PostCategory.associate = (models) => {
@@ -41,14 +41,6 @@ const PostCategory = (sequelize, DataTypes) => {
       otherKey: 'postId'
     });
   }
-  // PostCategory.associate = (models) => {
-  //   PostCategory.belongsToMany(models.Category, {
-  //     as: 'category',
-  //     through: PostCategory,
-  //     foreignKey: 'categoryId',
-  //     otherKey: 'postId'
-  //   });
-  // };
   return PostCategory;
 }
 
