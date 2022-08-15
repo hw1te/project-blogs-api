@@ -20,25 +20,35 @@ const userController = {
 
   validateToken: async (req, res, next) => {
     try {
-      const token = req.headers.authorization;
-
+      let token = req.headers.authorization;
+      console.log(token);
       if (!token) {
         return res.status(401).json({ message: 'Token not found' });
       }
+      token = token.replace('Bearer ', '');
 
       const payload = jwt.verify(token, process.env.JWT_SECRET);
       req.user = payload;
 
       return next();
     } catch (error) {
-      res.status(401).json({ message: 'Expired or invalid token' });
+      return res.status(401).json({ message: 'Expired or invalid token' });
     }
   },
 
   getUsers: async (_req, res) => {
     const { code, data } = await userService.getUsers();
+    console.log(code, data);
     res.status(code).json(data);
   },
+
+  getById: async (req, res) => {
+    const { id } = req.params;
+    const { code, data } = await userService.getById(id);
+    console.log(code);
+    return res.status(code).json(data);
+  },
+
 };
 
 module.exports = userController;

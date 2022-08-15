@@ -16,7 +16,7 @@ const userService = {
 
   create: async (user) => {
     const emails = await User.findAll({
-      attributes: ['email'],
+      attr1: ['email'],
       raw: true,
     });
     const allEmails = emails.map((email) => email.email);
@@ -35,9 +35,28 @@ const userService = {
 
   getUsers: async () => {
     const users = await User.findAll({
+      attributes: { exclude: ['password'] },
       raw: true,
     });
+
     return { code: 200, data: users };
+  },
+
+  getById: async (id) => {
+    // try {
+    const user = await User.findByPk(id, {
+
+      attributes: { exclude: ['password'] },
+    });
+    if (!user) {
+      return { code: 404, data: { message: 'User does not exist' } };
+    }
+
+    return { code: 200, data: user };
+    // } catch (error) {
+    // console.log(error);
+    // return { code: 404, data: { message: 'User does not exist' } };
+    // }
   },
 };
 
