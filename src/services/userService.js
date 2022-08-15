@@ -21,7 +21,6 @@ const userService = {
     });
     const allEmails = emails.map((email) => email.email);
     const validation = validate(user);
-    console.log(allEmails);
     if (validation !== false) {
       return validation;
     }
@@ -43,7 +42,6 @@ const userService = {
   },
 
   getById: async (id) => {
-    // try {
     const user = await User.findByPk(id, {
 
       attributes: { exclude: ['password'] },
@@ -53,10 +51,6 @@ const userService = {
     }
 
     return { code: 200, data: user };
-    // } catch (error) {
-    // console.log(error);
-    // return { code: 404, data: { message: 'User does not exist' } };
-    // }
   },
 };
 
