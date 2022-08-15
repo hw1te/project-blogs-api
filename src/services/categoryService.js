@@ -11,6 +11,14 @@ const categoryService = {
     }
     return { code: 201, data: category };
   },
+
+  getCategories: async () => {
+    const categories = await Category.findAll({
+      raw: true,
+    });
+
+    return { code: 200, data: categories };
+  },
 };
 
 module.exports = categoryService;
