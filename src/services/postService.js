@@ -44,6 +44,23 @@ const postService = {
 
     return { code: 200, data: postId };
   },
+
+  update: async ({ title, content }, id, userId) => {
+    if (Number(id) !== userId) {
+      return { code: 401, data: { message: 'Unauthorized user' } };
+    }
+    if (!title || !content) {
+      return { code: 400, data: { message: 'Some required fields are missing' } };
+    }
+    await BlogPost.update({
+      title, content, updated: new Date(),
+    }, {
+      where: { id },
+      raw: true,
+    });
+    const getPostById = await BlogPost.findByPk(id, { include: 'categories' });
+    return { code: 200, data: getPostById };
+  },
 };
 
 module.exports = postService;

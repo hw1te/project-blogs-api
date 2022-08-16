@@ -10,7 +10,6 @@ const tokenMiddleware = {
       token = token.replace('Bearer ', '');
 
       const payload = jwt.verify(token, process.env.JWT_SECRET);
-      console.log(payload, 'payload');
       req.user = payload;
 
       return next();

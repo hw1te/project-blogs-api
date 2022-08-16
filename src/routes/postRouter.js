@@ -9,5 +9,6 @@ router.post('/', tokenMiddleware.validateToken, postMiddleware.validateBody,
   postMiddleware.validateCategoryId, postController.create);
 router.get('/', tokenMiddleware.validateToken, postController.getAll);
 router.get('/:id', tokenMiddleware.validateToken, postController.getById);
+router.put('/:id', tokenMiddleware.validateToken, postController.update);
 
 module.exports = router;
