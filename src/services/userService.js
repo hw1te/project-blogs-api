@@ -3,6 +3,25 @@ const { User } = require('../database/models');
 const { validate } = require('../schemas/userSchemas');
 
 const userService = {
+  getUsers: async () => {
+    const users = await User.findAll({
+      attributes: { exclude: ['password'] },
+      raw: true,
+    });
+
+    return { code: 200, data: users };
+  },
+
+  getById: async (id) => {
+    const user = await User.findByPk(id, {
+
+      attributes: { exclude: ['password'] },
+    });
+    if (!user) {
+      return { code: 404, data: { message: 'User does not exist' } };
+    }
+    return { code: 200, data: user };
+  },
   makeToken: (payload) => {
     const token = jwt.sign(payload, process.env.JWT_SECRET);
 
@@ -27,25 +46,15 @@ const userService = {
     return { code: 201, data: result };
   },
 
-  getUsers: async () => {
-    const users = await User.findAll({
-      attributes: { exclude: ['password'] },
-      raw: true,
+  delete: async (id) => {
+    const getUserbById = await User.findByPk(id);
+    console.log(getUserbById);
+    const userId = getUserbById.dataValues.id;
+    const deleteUser = await User.destroy({
+      where: { id: userId },
     });
 
-    return { code: 200, data: users };
-  },
-
-  getById: async (id) => {
-    const user = await User.findByPk(id, {
-
-      attributes: { exclude: ['password'] },
-    });
-    if (!user) {
-      return { code: 404, data: { message: 'User does not exist' } };
-    }
-
-    return { code: 200, data: user };
+    return { code: 204, data: deleteUser };
   },
 };
 

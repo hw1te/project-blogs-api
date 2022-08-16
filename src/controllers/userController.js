@@ -3,7 +3,6 @@ const userService = require('../services/userService');
 const userController = {
   create: async (req, res) => {
     const user = req.body;
-    console.log(user, 'user teste');
     const payload = {
       displayName: user.displayName,
       email: user.email,
@@ -20,17 +19,23 @@ const userController = {
 
   getUsers: async (_req, res) => {
     const { code, data } = await userService.getUsers();
-    console.log(code, data);
     res.status(code).json(data);
   },
 
   getById: async (req, res) => {
     const { id } = req.params;
     const { code, data } = await userService.getById(id);
-    console.log(code);
+
     return res.status(code).json(data);
   },
 
+  delete: async (req, res) => {
+    const { id } = req.params;
+    console.log(id);
+    const { code, data } = await userService.delete(id);
+
+    return res.status(code).json(data);
+  },
 };
 
 module.exports = userController;
