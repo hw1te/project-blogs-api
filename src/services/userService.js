@@ -47,8 +47,8 @@ const userService = {
   },
 
   delete: async (id) => {
+    console.log(id);
     const getUserbById = await User.findByPk(id);
-    console.log(getUserbById);
     const userId = getUserbById.dataValues.id;
     const deleteUser = await User.destroy({
       where: { id: userId },
