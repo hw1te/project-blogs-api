@@ -28,6 +28,22 @@ const postService = {
 
     return { code: 200, data: post };
   },
+
+  getBydId: async (id) => {
+    const postId = await BlogPost.findByPk(id, {
+      include: [{
+        model: User,
+        as: 'user',
+        attributes: { exclude: ['password'] },
+      },
+      { model: Category, as: 'categories' }],
+    });
+    if (!postId) {
+      return { code: 404, data: { message: 'Post does not exist' } };
+    }
+
+    return { code: 200, data: postId };
+  },
 };
 
 module.exports = postService;
