@@ -12,6 +12,15 @@ const categoryService = {
     return { code: 201, data: category };
   },
 
+  getById: async () => {
+    const result = await Category.findAll({
+      attributes: ['id'],
+      raw: true,
+    });
+
+    return result.map((id) => id.id);
+  },
+
   getCategories: async () => {
     const categories = await Category.findAll({
       raw: true,

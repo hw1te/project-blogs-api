@@ -21,12 +21,7 @@ const loginService = {
     return { code: 200, data: user };
   },
 
-  makeToken: (userEmail, userPassword) => {
-    const payload = {
-      email: userEmail,
-      password: userPassword,
-    };
-
+  makeToken: (payload) => {
     const token = jwt.sign(payload, process.env.JWT_SECRET);
 
     return token;

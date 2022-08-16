@@ -3,6 +3,7 @@ const userService = require('../services/userService');
 const userController = {
   create: async (req, res) => {
     const user = req.body;
+    console.log(user, 'user teste');
     const payload = {
       displayName: user.displayName,
       email: user.email,

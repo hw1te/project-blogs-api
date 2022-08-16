@@ -24,7 +24,7 @@ const PostCategory = (sequelize, DataTypes) => {
     },
   },
     {
-      timestapms: false,
+      timestamps: false,
     });
 
   PostCategory.associate = (models) => {

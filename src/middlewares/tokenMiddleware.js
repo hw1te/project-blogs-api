@@ -4,13 +4,13 @@ const tokenMiddleware = {
   validateToken: async (req, res, next) => {
     try {
       let token = req.headers.authorization;
-      console.log(token);
       if (!token) {
         return res.status(401).json({ message: 'Token not found' });
       }
       token = token.replace('Bearer ', '');
 
       const payload = jwt.verify(token, process.env.JWT_SECRET);
+      console.log(payload, 'payload');
       req.user = payload;
 
       return next();

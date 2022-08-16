@@ -3,12 +3,7 @@ const { User } = require('../database/models');
 const { validate } = require('../schemas/userSchemas');
 
 const userService = {
-  makeToken: (userEmail, userPassword) => {
-    const payload = {
-      email: userEmail,
-      password: userPassword,
-    };
-
+  makeToken: (payload) => {
     const token = jwt.sign(payload, process.env.JWT_SECRET);
 
     return token;
