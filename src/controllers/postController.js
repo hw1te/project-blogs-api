@@ -8,6 +8,12 @@ const postController = {
 
     return res.status(code).json(data);
   },
+
+  getAll: async (_req, res) => {
+    const { code, data } = await postService.getAll();
+
+    return res.status(code).json(data);
+  },
 };
 
 module.exports = postController;

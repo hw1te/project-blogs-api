@@ -7,5 +7,6 @@ const postMiddleware = require('../middlewares/postMiddleware');
 
 router.post('/', tokenMiddleware.validateToken, postMiddleware.validateBody,
   postMiddleware.validateCategoryId, postController.create);
+router.get('/', tokenMiddleware.validateToken, postController.getAll);
 
 module.exports = router;
