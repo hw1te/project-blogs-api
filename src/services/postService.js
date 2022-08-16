@@ -61,6 +61,23 @@ const postService = {
     const getPostById = await BlogPost.findByPk(id, { include: 'categories' });
     return { code: 200, data: getPostById };
   },
+
+  delete: async (id, userId) => {
+    const getPostById = await BlogPost.findByPk(id, { include: 'categories' });
+    console.log(getPostById, 'getpost teste');
+    if (!getPostById) {
+      return { code: 404, data: { message: 'Post does not exist' } };
+    }
+    const postId = getPostById.dataValues.userId;
+    console.log(userId);
+    if (userId !== postId) {
+      return { code: 401, data: { message: 'Unauthorized user' } };
+    }
+    const deletePost = await BlogPost.destroy({
+      where: { id },
+    });
+    return { code: 204, data: deletePost };
+  },
 };
 
 module.exports = postService;

@@ -28,7 +28,16 @@ const postController = {
 
     const { code, data } = await postService.update(req.body, id, user.id);
 
-    res.status(code).json(data);
+    return res.status(code).json(data);
+  },
+
+  delete: async (req, res) => {
+    const { id } = req.params;
+    const { user } = req;
+
+    const { code, data } = await postService.delete(id, user.id);
+
+    return res.status(code).json(data);
   },
 };
 
