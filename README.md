@@ -87,4 +87,26 @@
  *There are more scripts available, you can explore the package.json file to find about them :mag:*
  </details>
  <details><summary>How to use</summary>
+ 
+ - Set up your environment variables according to your own settings and change the `.env.example` file to `.env`, here's a mock model of it:
+ ```
+   #### SERVER VARS
+   NODE_ENV=development
+   API_PORT=3000
+
+   #### DATABASE VARS
+   MYSQL_HOST=localhost
+   MYSQL_PORT=3306
+   MYSQL_DB_NAME=blogs-api
+   MYSQL_USER=root
+   MYSQL_PASSWORD=password
+
+   #### SECRECT VARS
+   JWT_SECRET=suaSenhaSecreta
+ ```
+ 
+ - Start the applications using either `npm start` or `npm run start`.
+ 
+ :no_entry: Note that without the database and tables being created and populated with the data through the commands listed above in the info section you won't be able to test the HTTP methods with your API platform (Postman or Thunder Client for an example). :no_entry:
+ 
  </details>
