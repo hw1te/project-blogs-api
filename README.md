@@ -1,22 +1,20 @@
 # :newspaper: Blogs API :newspaper:
- Development and testing of an API for a Blog together with a data base.
+ Desenvolvimento de uma API em conjunto com testes e banco de dados para um Blog.
+  
+ ## Introdução
  
- Blog posts related CRUD with a layer of JWT authentication  for users.
+Usei no projeto Node.js ORM, funções CRUD e autenticação JWT de segurança implementada nas requisições HTTP necessárias, seguem abaixo os conceitos utilizados:
  
- ## Introduction
+ - Node.js
+ - Associações (*1:1*, *1:N*, *N:N*)
+ - Sequelize ORM (Mapeamento Objeto Relacional)
+ - Autenticação Json Web Token (JWT)
+ - Requisições HTTP
  
- This is a Node.js ORM project with CRUD and authentication implemented in a few of the HTTP requests. In this project, I used the concepts of:
+ ## Instruções
+ <details><summary>Informações</summary>
  
- - Node.js ORM
- - Associations (*1:1*, *1:N*, *N:N*)
- - Sequelize
- - JWT Authentication
- - HTTP Requests
- 
- ## Instructions
- <details><summary>Info</summary>
- 
- **Routes and Methods**
+ **Rotas e Métodos**
  
  - /login
    - `POST`.
@@ -27,9 +25,9 @@
  - /post
     - `POST`, `GET`, `PUT`, `DELETE`.
     
- **Request JSON Bodies**
+ **Corpo JSON das requisições**
  
- - Login route:
+ - Rota Login:
    - `POST`
    ```
    {
@@ -37,7 +35,7 @@
      "password": "123456"
    }
    ```
- - User route:
+ - Rota User:
    - `POST`
    ```
    {
@@ -47,14 +45,14 @@
     "image": "http://4.bp.blogspot.com/_YA50adQ-7vQ/S1gfR_6ufpI/AAAAAAAAAAk/1ErJGgRWZDg/S45/brett.png"
    }
    ```
- - Categories route:
+ - Rota Categories:
    - `POST`
    ```
    {
     "name": "Typescript"
    }
    ```
- - Post route:
+ - Rota Post:
    - `POST`
    ```
    {
@@ -71,24 +69,24 @@
    }
    ```
 
-**Available scripts:**
+**Scripts disponíveis:**
 
  - [x] `npm run start`
-   - Start the application.
+   - Começa a rodar o aplicativo.
  - [x] `npm rum drop`
-   -  Delete the database.
+   - Deleta o banco de dados.
  - [x] `npm run prestart`
-   - Create the database and generate tables.
+   - Cria o banco de dados e gera as tabelas.
  - [x] `npm run seed`
-   - Insert data and populate the database.
+   - Insere os dados e popula o banco de dados.
  - [ ] `npm run duck`
-   - Creates a duck :hatching_chick:
+   - Cria um pato :hatching_chick:
  
- *There are more scripts available, you can explore the package.json file to find about them :mag:*
+ *Existem outros scripts disponíveis, você pode achar eles explorando o arquivo package.json :mag:* 
  </details>
- <details><summary>How to use</summary>
+ <details><summary>Como usar</summary>
  
- - Set up your environment variables according to your own settings and change the `.env.example` file to `.env`, here's a mock model of it:
+ - Configure suas variáveis de ambiente de acordo com sua configuração e mude o arquivo `.env.example` para `.env`, aqui está um modelo de exemplo: 
  ```
    #### SERVER VARS
    NODE_ENV=development
@@ -101,12 +99,12 @@
    MYSQL_USER=root
    MYSQL_PASSWORD=password
 
-   #### SECRECT VARS
+   #### SECRET VARS
    JWT_SECRET=suaSenhaSecreta
  ```
  
- - Start the applications using either `npm start` or `npm run start`.
+ - Comece a aplicação usando `npm start` ou `npm run start`.
  
- :no_entry: Note that without the database and tables being created and populated with the data through the commands listed above in the info section you won't be able to test the HTTP methods with your API platform (Postman or Thunder Client for an example). :no_entry:
+ :no_entry: Atente-se que sem o banco de dados e suas tabelas terem sido criadas e populadas com os dados você não vai conseguir testar os métodos HTTP com sua platarforma de APIs (Por exemplo: Postman ou Thunder Client). :no_entry: 
  
  </details>
